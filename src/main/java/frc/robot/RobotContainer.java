@@ -10,7 +10,7 @@ import frc.robot.poseestimation.PoseEstimator;
 import frc.robot.poseestimation.camera.Camera;
 import frc.robot.subsystems.leds.Leds;
 import frc.robot.subsystems.swerve.Swerve;
-
+import frc.robot.subsystems.TankDrives.Tankdrive;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static edu.wpi.first.wpilibj.RobotController.getBatteryVoltage;
@@ -35,6 +35,8 @@ public class RobotContainer {
       
         ButtonControls.initializeButtons(ButtonControls.ButtonLayout.TELEOP);
     }
+
+    public static final Tankdrive TANK_DRIVE = new Tankdrive();
 
     public Command getAutonomousCommand() {
         return QUESTIONNAIRE.getCommand();

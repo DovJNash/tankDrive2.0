@@ -4,6 +4,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.lib.generic.GenericSubsystem;
@@ -17,11 +19,11 @@ import frc.robot.utilities.PathingConstants;
 
 import java.util.function.DoubleSupplier;
 
-import static frc.lib.generic.hardware.controllers.Controller.Axis.LEFT_X;
-import static frc.lib.generic.hardware.controllers.Controller.Axis.LEFT_Y;
+import static frc.lib.generic.hardware.controllers.Controller.Axis.*;
 import static frc.lib.generic.visualization.DrawUtils.TWO_PI;
 import static frc.robot.RobotContainer.POSE_ESTIMATOR;
 import static frc.robot.RobotContainer.SWERVE;
+import static frc.robot.RobotContainer.TANK_DRIVE;
 import static frc.robot.subsystems.swerve.SwerveCommands.rotateToTarget;
 import static frc.robot.utilities.PathingConstants.ROBOT_CONFIG;
 
@@ -57,12 +59,28 @@ public class ButtonControls {
             case CHARACTERIZE_SWERVE_AZIMUTH -> setupAzimuthCharacterization();
             case TUNE_BLINE -> configureBLineTuning();
             case SYSTEM_TEST -> testSystems();
+
         }
     }
 
     private static void testSystems() {
         setupDriving();
     }
+
+
+    public static Command setupTankDrive() {
+        return Commands.run(() -> {
+            TANK_DRIVE.setupTankDrive(
+                    DRIVER_CONTROLLER.getRawAxis(LEFT_Y),
+                    DRIVER_CONTROLLER.getRawAxis(RIGHT_Y)
+            );
+        }, TANK_DRIVE
+        );
+    }
+
+
+
+
 
     private static void configureBLineTuning() {
         setupDriving();
@@ -84,6 +102,7 @@ public class ButtonControls {
 
         setupOperatorKeyboardButtons();
         setupTeleopLEDs();
+        setupTankDrive();
     }
 
     private static void setupOperatorKeyboardButtons() {
