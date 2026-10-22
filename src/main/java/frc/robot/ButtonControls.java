@@ -69,7 +69,9 @@ public class ButtonControls {
 
 
     public static void setupTankDrive() {
-        TANK_DRIVE.setupTankDrive(X_SUPPLIER.getAsDouble(), Y_SUPPLIER.getAsDouble());
+        TANK_DRIVE.setDefaultCommand(
+            TANK_DRIVE.setupTankDrive(X_SUPPLIER, Y_SUPPLIER)
+        );
     }
 
 

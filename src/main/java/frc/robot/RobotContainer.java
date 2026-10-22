@@ -12,8 +12,11 @@ import frc.robot.subsystems.leds.Leds;
 import frc.robot.subsystems.swerve.Swerve;
 import frc.robot.subsystems.TankDrives.Tankdrive;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.DoubleSupplier;
 
 import static edu.wpi.first.wpilibj.RobotController.getBatteryVoltage;
+
+import frc.robot.subsystems.TankDrives.Tankdrive;
 
 public class RobotContainer {
     public static final BuiltInAccelerometer ACCELEROMETER = new BuiltInAccelerometer();
@@ -22,6 +25,8 @@ public class RobotContainer {
             new Camera[]{},
             null
     );
+
+    public static final Tankdrive TANK_DRIVE = new Tankdrive();
 
     public static final Swerve SWERVE = new Swerve();
     public static final Leds LEDS = new Leds();
@@ -36,7 +41,6 @@ public class RobotContainer {
         ButtonControls.initializeButtons(ButtonControls.ButtonLayout.TELEOP);
     }
 
-    public static final Tankdrive TANK_DRIVE = new Tankdrive();
 
     public Command getAutonomousCommand() {
         return QUESTIONNAIRE.getCommand();
