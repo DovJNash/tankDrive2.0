@@ -68,18 +68,9 @@ public class ButtonControls {
     }
 
 
-    public static Command setupTankDrive() {
-        return Commands.run(() -> {
-            TANK_DRIVE.setupTankDrive(
-                    DRIVER_CONTROLLER.getRawAxis(LEFT_Y),
-                    DRIVER_CONTROLLER.getRawAxis(RIGHT_Y)
-            );
-        }, TANK_DRIVE
-        );
+    public static void setupTankDrive() {
+        TANK_DRIVE.setupTankDrive(X_SUPPLIER.getAsDouble(), Y_SUPPLIER.getAsDouble());
     }
-
-
-
 
 
     private static void configureBLineTuning() {
@@ -98,7 +89,7 @@ public class ButtonControls {
     }
 
     private static void configureButtonsTeleop() {
-        setupDriving();
+        // setupDriving();
 
         setupOperatorKeyboardButtons();
         setupTeleopLEDs();
