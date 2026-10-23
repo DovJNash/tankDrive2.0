@@ -46,6 +46,7 @@ public class ButtonControls {
 
     private static final DoubleSupplier X_SUPPLIER = () -> DRIVE_SIGN.getAsDouble() * DRIVER_CONTROLLER.getRawAxis(LEFT_Y) * 0.5;
     private static final DoubleSupplier Y_SUPPLIER = () -> DRIVE_SIGN.getAsDouble() * DRIVER_CONTROLLER.getRawAxis(LEFT_X) * 0.5;
+    private static final DoubleSupplier rightStick_X = () -> DRIVE_SIGN.getAsDouble() * DRIVER_CONTROLLER.getRawAxis(RIGHT_X) * 0.5;
     private static final DoubleSupplier OMEGA_SUPPLIER = () -> -DRIVER_CONTROLLER.getRawAxis(Controller.Axis.RIGHT_X) * 10 * 0.5;
 
     private static final Trigger USER_BUTTON = new Trigger(RobotController::getUserButton);
@@ -70,7 +71,7 @@ public class ButtonControls {
 
     public static void setupTankDrive() {
         TANK_DRIVE.setDefaultCommand(
-            TANK_DRIVE.setupTankDrive(X_SUPPLIER, Y_SUPPLIER)
+            TANK_DRIVE.setupTankDrive(rightStick_X,  X_SUPPLIER)
         );
     }
 

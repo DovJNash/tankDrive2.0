@@ -26,8 +26,6 @@ public class RobotContainer {
             null
     );
 
-    public static final Tankdrive TANK_DRIVE = new Tankdrive();
-
     public static final Swerve SWERVE = new Swerve();
     public static final Leds LEDS = new Leds();
     public static final Questionnaire QUESTIONNAIRE = new Questionnaire();
@@ -41,6 +39,7 @@ public class RobotContainer {
         ButtonControls.initializeButtons(ButtonControls.ButtonLayout.TELEOP);
     }
 
+    public static final Tankdrive TANK_DRIVE = new Tankdrive();
 
     public Command getAutonomousCommand() {
         return QUESTIONNAIRE.getCommand();
