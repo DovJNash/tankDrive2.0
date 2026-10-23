@@ -16,8 +16,6 @@ public class Tankdrive extends GenericSubsystem {
         tankDriveConstants.motorFollowConfig();
     }
 
-
-
     public Command setupTankDrive(DoubleSupplier leftStickValue, DoubleSupplier rightStickValue) {
         return Commands.run(()-> tankDrive.arcadeDrive(leftStickValue.getAsDouble(), rightStickValue.getAsDouble()), this);
     }
